@@ -1,0 +1,33 @@
+<div id="form-container" class="container-fluid p-5 gap-3 border ">
+
+  <% if (next === -1) {%>
+  <form id="question-form" action="">
+  <% }else { %>
+  <form id="question-form" action="/quiz/<%= id %>/question/<%= next %>" method="GET" class="">
+  <% } %>
+      <h3 class="mb-4"><%= title %></h3>
+      <div class="mb-3">
+        <p class="fw-bold"><%= question.question %></p>
+        <% question.options.forEach((option, i) => { %>
+          <div class="form-check border-top py-3">
+            <% if (parseInt(question.answer) === i){%>
+              <input class="form-check-input" type="radio" name="answer" value="yes" id="<%= i %>" required>
+              
+            <% } else {%>
+              <input class="form-check-input" type="radio" name="answer" value="no" id="<%= i %>" required>
+            <% } %>
+            <label class="form-check-label fw-medium" for="<%= i %>"><%= option %></label>
+          </div>
+        <% }) %>
+      </div>
+    
+      
+    <% if (!(next === -1)) {%>
+      <button type="submit" class="btn btn-dark">Next</button>
+    <% } else {%>
+      <button type="button" id="finish-btn" class="btn btn-dark">Finish</button>
+      <% } %>
+  </form>
+
+  
+</div>
